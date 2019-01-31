@@ -3,7 +3,7 @@ export interface ILargeUser {
   name: string;
   email: string;
   username: string;
-  adress: IAddress;
+  address: IAddress;
   phone: string;
   website: string;
   company: ICompany;
