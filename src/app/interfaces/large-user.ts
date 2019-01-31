@@ -3,10 +3,27 @@ export interface ILargeUser {
   name: string;
   email: string;
   username: string;
-  adress: {
-
-  };
+  adress: IAddress;
   phone: string;
   website: string;
-  company: {};
+  company: ICompany;
+}
+
+export interface IAddress {
+  street: string;
+  suite: number;
+  city: string;
+  zipcode: string;
+  geo: IGeo;
+}
+
+export interface IGeo {
+  lat: string;
+  lng: string;
+}
+
+export interface ICompany {
+  name: string;
+  catchPhrase: string;
+  bs: string;
 }
