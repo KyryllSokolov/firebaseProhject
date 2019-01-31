@@ -10,12 +10,14 @@ import { RouterModule } from '@angular/router';
 import { GreatingComponent } from './greating/greating.component';
 import { routes } from './app.routes';
 import { WorkspaceComponent } from './workspace/workspace.component';
+import { EditCreateUserComponent } from './edit-create-user/edit-create-user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GreatingComponent,
-    WorkspaceComponent
+    WorkspaceComponent,
+    EditCreateUserComponent
   ],
   imports: [
     BrowserModule,

@@ -13,6 +13,7 @@ export class WorkspaceComponent implements OnInit {
   constructor(private db: AngularFireDatabase) { }
 
   ngOnInit() {
+    this.books = this.db.list('/users');
   }
 
 }
