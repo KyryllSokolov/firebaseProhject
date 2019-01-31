@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { IUser } from '../interfaces/user';
 
 @Component({
   selector: 'app-workspace',
@@ -6,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./workspace.component.css']
 })
 export class WorkspaceComponent implements OnInit {
+  public books: AngularFireList<IUser[]>;
 
-  constructor() { }
+  constructor(private db: AngularFireDatabase) { }
 
   ngOnInit() {
   }
