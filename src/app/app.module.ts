@@ -28,7 +28,7 @@ import { UsersService } from './users.service';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebase, 'firestorm-expert'),
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     RouterModule.forRoot(routes)
   ],

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { IUser } from '../interfaces/user';
 import {UsersService} from '../users.service';
@@ -7,18 +7,20 @@ import {ILargeUser} from '../interfaces/large-user';
 @Component({
   selector: 'app-workspace',
   templateUrl: './workspace.component.html',
-  styleUrls: ['./workspace.component.css']
+  styleUrls: ['./workspace.component.css'],
 })
-export class WorkspaceComponent implements OnInit {
+export class WorkspaceComponent implements OnInit, OnDestroy {
   public serverUsers$: AngularFireList<IUser[]>;
   serverUsers: IUser[];
+  largeUSers: ILargeUser[];
   users: IUser[];
 
-  constructor(private db: AngularFireDatabase, private usersService: UsersService) { }
+  constructor(private db: AngularFireDatabase,
+              private usersService: UsersService) { }
 
   ngOnInit() {
-    this.serverUsers$ = this.db.list('/users');
-    this.usersService.getUsers$().subscribe((users: ILargeUser[]) => {
+    this.usersService.getUsers$()
+      .subscribe((users: ILargeUser[]) => {
       this.users = users.map((user: ILargeUser) => {
         return {
           username: user.username,
@@ -28,12 +30,13 @@ export class WorkspaceComponent implements OnInit {
           website: user.website
         };
       });
-      this.serverUsers$.push(this.users);
-    });
 
-    this.serverUsers$.valueChanges().subscribe((users: IUser[][]) => {
-      console.log(users);
-    });
+      this.usersService.updateUsers(this.users);
+      });
+
+  }
+
+  ngOnDestroy(): void {
   }
 
 }
